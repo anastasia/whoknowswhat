@@ -1,0 +1,16 @@
+{
+  "name": "whoknowswhat",
+  "version": "0.0.0",
+  "homepage": "https://github.com/joeyyang/whoknowswhat",
+  "authors": [
+    "Joey Yang <joey@joeyyang.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
