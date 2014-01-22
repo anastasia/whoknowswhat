@@ -1,16 +1,21 @@
 var AppRouter = Backbone.Router.extend({
+
   routes: {
-    "/skills": "showSkills"
+    "": "showSkills",
+    "skills": "showSkills"
   },
+
   showSkills: function(){
     this.users = new UserCollection();
-    this.userListView = new UserListView({
+    this.userListView = new UsersListView({
       collection: this.users
     });
     $('body').html(this.userListView.render().el);
-  }
+  },
 
+  initialize: function(options){
+    return this;
+  }
 });
 
-var app = newAppRouter();
-Backbone.history.start();
+var appRouter = new AppRouter();
