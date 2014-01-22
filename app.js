@@ -10,7 +10,7 @@ var http = require('http');
 var path = require('path');
 var _ = require('underscore');
 
-//initialize express
+// initialize express
 
 var app = express();
 
@@ -48,7 +48,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/client/*', routes.client);
-app.get('/api/users', routes.api);
+app.get('/api/users/', routes.api);
 
 //
 // create and launch server
