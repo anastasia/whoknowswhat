@@ -48,6 +48,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/client/*', routes.client);
+app.get('/api/users', routes.api);
 
 //
 // create and launch server
