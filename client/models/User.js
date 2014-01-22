@@ -6,7 +6,7 @@ var User = Backbone.Model.extend({
     skills: []
   },
 
-  // url: "/api/users",
+  url: "/api/users",
 
   initialize: function(params){
     // this.set()
