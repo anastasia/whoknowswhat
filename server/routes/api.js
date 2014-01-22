@@ -36,6 +36,8 @@ var getSkills = function(users){
       }
     });
   });
+
+  console.log(_.keys(skillCount).sort());
   return skillCount;
 };
 

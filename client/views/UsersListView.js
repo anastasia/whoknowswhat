@@ -4,6 +4,8 @@ var UsersListView = Backbone.View.extend({
     this.collection.fetch();
   },
 
+  tagName: 'tbody',
+
   render: function(eventName){
     _.each(this.collection.models, function(user){
       var userEntryView = new UserEntryView({model: user});

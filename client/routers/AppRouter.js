@@ -12,9 +12,8 @@ var AppRouter = Backbone.Router.extend({
     this.skills = new Skills();
     this.skills.fetch({
       success: function(model, response, options){
-        this.skillsListView = new SkillsListView({
-          collection: this.skills
-        });
+        this.skillsListView = new SkillsListView({collection: this.skills});
+        // this.skillsListView.collection.set('')
         $('body').append(this.skillsListView.render().el);
       }.bind(this),
       error: function(err){
@@ -23,10 +22,8 @@ var AppRouter = Backbone.Router.extend({
     });
     this.users.fetch({
       success: function(model, response, options){
-        this.usersListView = new UsersListView({
-          collection: this.users
-        });
-        $('body').append(this.usersListView.render().el);
+        this.usersListView = new UsersListView({collection: this.users});
+        $('thead').after(this.usersListView.render().el);
       }.bind(this),
       error: function(err){
         console.log(err);
