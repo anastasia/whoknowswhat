@@ -9,18 +9,30 @@
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
     
+    <!-- initialize User model, collection, and views -->
+    <script src="models/User.js"></script>
+    <script src="collections/UserCollection.js"></script>
+    <script src="views/UserEntryView.js"> </script>
+    <script src="views/UsersListView.js"> </script>
+
+    <!-- initialize App model and view -->
     <script src="models/App.js"> </script>
     <script src="views/AppView.js"> </script>
 
-    <script>
-      $(function(){
-        var app = new App({});
-        // build a view for the top level of the whole app
-        var appView = new AppView({model: app});
+    <!-- initialize router -->
+    <script src="routers/AppRouter.js"></script>
 
-        // put the view onto the screen
-        $('body').append(appView.render());
-      });
-    </script>
+    <!--
+      <script>
+        $(function(){
+          var app = new App({});
+          // build a view for the top level of the whole app
+          var appView = new AppView({model: app});
+
+          // put the view onto the screen
+          $('body').append(appView.render());
+        });
+      </script>
+    -->
   </body>
 </html>
