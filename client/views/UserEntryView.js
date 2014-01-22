@@ -1,15 +1,5 @@
 var UserEntryView = Backbone.View.extend({
-  template: _.template(
-    "<p>This is a user." +
-       "<ul>" +
-         "<li>Name:<%= name %></li>" +
-         "<li>Email:<%= email %></li>" +
-         // "<li>Skills: <% _.each(skills, function(value){" +
-         //                  "<%= value %>" +
-         //                "})%></li>" +
-       "</ul>" +
-     "</p>"
-  ),
+  template: _.template(userTemplates.userView), // in /client/templates/userTemplates.js
   render: function(eventName){
     this.$el.html(this.template(this.model.toJSON()));
     return this;
