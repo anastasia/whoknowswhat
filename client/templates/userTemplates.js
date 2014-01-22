@@ -1,8 +1,10 @@
 var userTemplates = {
-  userView:
+  usersView:
     "<p>User <%= id %>:" +
        "<ul>" +
-         "<li>Name: <%= name %></li>" +
+         "<li>" +
+           "Name: <a href=\"mailto:<%= email %>?subject=Hi <%= name %>, I need help!\"><%= name %></a>" +
+         "</li>" +
          "<li>Email: <%= email %></li>" +
          "<li>Skills: " +
            "<ul>"+
@@ -12,5 +14,13 @@ var userTemplates = {
            "</ul>" +
          "</li>" +
        "</ul>" +
-     "</p>"
+     "</p>",
+  skillsView:
+    // "skills here!",
+    "<% _.each(obj, function(value, key){%>" +
+      "<li><%= key %></li>" +
+    "<% }) %>",
+  tableHeader:
+    "<p>"
+
 };

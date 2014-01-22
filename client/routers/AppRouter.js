@@ -7,14 +7,26 @@ var AppRouter = Backbone.Router.extend({
   },
 
   showSkills: function(){
+    // this.skills = new 
     this.users = new UserCollection();
+    this.skills = new Skills();
+    this.skills.fetch({
+      success: function(model, response, options){
+        this.skillsListView = new SkillsListView({
+          collection: this.skills
+        });
+        $('body').append(this.skillsListView.render().el);
+      }.bind(this),
+      error: function(err){
+        console.log(err);
+      }
+    });
     this.users.fetch({
       success: function(model, response, options){
-        // console.log(this.users.models);
-        this.userListView = new UsersListView({
+        this.usersListView = new UsersListView({
           collection: this.users
         });
-        $('body').html(this.userListView.render().el);
+        $('body').append(this.usersListView.render().el);
       }.bind(this),
       error: function(err){
         console.log(err);

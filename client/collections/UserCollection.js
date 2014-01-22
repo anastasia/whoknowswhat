@@ -1,6 +1,5 @@
 var UserCollection = Backbone.Collection.extend({
   model: User,
-  // url: "/api/users/"
   url: "/api/users/",
   sortAttribute: "skills",
   sortDirection: 1,

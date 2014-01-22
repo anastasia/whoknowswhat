@@ -50,6 +50,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/client/*', routes.client);
 app.get('/api/users/', api.users);
+app.get('/api/skills/', api.skills);
 
 //
 // create and launch server

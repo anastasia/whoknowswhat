@@ -19,6 +19,30 @@ var users = [
   }
 ];
 
+var skills = {
+  "Angular": [1],
+  "Beard": [1],
+  "Everything": [1]
+};
+
+var getSkills = function(users){
+  var skillCount = {};
+  _.each(users, function(user, key, collection){
+    _.each(user.skills, function(skill){
+      if (!skillCount[skill]) {
+        skillCount[skill] = 1;
+      } else {
+        skillCount[skill] += 1;
+      }
+    });
+  });
+  return skillCount;
+};
+
 exports.users = function(req, res){
   res.json(users);
+};
+
+exports.skills = function(req, res){
+  res.json(getSkills(users));
 };
