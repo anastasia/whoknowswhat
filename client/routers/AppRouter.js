@@ -13,23 +13,21 @@ var AppRouter = Backbone.Router.extend({
     this.skills.fetch({
       success: function(model, response, options){
         this.skillsListView = new SkillsListView({collection: this.skills});
-        // this.skillsListView.collection.set('')
         $('body').append(this.skillsListView.render().el);
+        this.users.fetch({
+          success: function(model, response, options){
+            this.usersListView = new UsersListView({collection: this.users});
+            $('thead').after(this.usersListView.render().el);
+          }.bind(this),
+          error: function(err){
+            console.log(err);
+          }
+        });
       }.bind(this),
       error: function(err){
         console.log(err);
       }
     });
-    this.users.fetch({
-      success: function(model, response, options){
-        this.usersListView = new UsersListView({collection: this.users});
-        $('thead').after(this.usersListView.render().el);
-      }.bind(this),
-      error: function(err){
-        console.log(err);
-      }
-    });
-    // debugger;
   },
 
   create: function(){

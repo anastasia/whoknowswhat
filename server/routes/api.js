@@ -16,6 +16,18 @@ var users = [
     name: "Marcus",
     email: "Marcus@hackreactor.com",
     skills: ["Everything"]
+  },
+  {
+    id: 3,
+    name: "Doug",
+    email: "doug@hackreactor.com",
+    skills: ["Beard", "Goofing", "Talking"]
+  },
+  {
+    id: 4,
+    name: "Fred",
+    email: "fred@hackreactor.com",
+    skills: ["Node", "Angular", "Backbone", "Git"]
   }
 ];
 
