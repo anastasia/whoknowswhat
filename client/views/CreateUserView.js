@@ -5,7 +5,7 @@ var CreateUserView = Backbone.View.extend({
   },
 
   submit: function(e){
-    debugger;
+    // debugger;
     e.preventDefault();  // preventing default submission..
     var newUserName = $(e.currentTarget).find('input[name="name"]').val();  // getting new form values..
     var newUserEmail = $(e.currentTarget).find('input[name="email"]').val();  // getting new form values..
