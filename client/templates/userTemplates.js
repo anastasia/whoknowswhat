@@ -5,20 +5,17 @@ var userTemplates = {
       "<%= model.name %>" +
     "</th>" +
     "<% _.each(skills, function(skill, key){" +
-      "var found = false;" +
+      "var skillLevel = 'None';" +
       "_.each(model.skills, function(value, key){" +
-        "if (value === skill) found = true;" +
+        "if (key === skill){" +
+          "skillLevel = value;" +
+        "}"  +
       "});" +
-      "if (found === true) { %>" +
-        "<th>Yes</th>" +
-      "<%} else %><th>No</th>" +
+      "%><th><%= skillLevel %></th>" +
     "<% }) %>",
   skillsView:
-    "<th column='name'></th>" +
+    "<th column='name' class='firstRow'></th>" +
     "<% _.each(obj, function(value, key){%>" +
-      "<th column='<%= key %>'><%= value %></th>" +
-    "<% }) %>",
-  tableHeader:
-    "<p>"
-
+      "<th column='<%= value %>' class='firstRow'><%= value %></th>" +
+    "<% }) %>"
 };

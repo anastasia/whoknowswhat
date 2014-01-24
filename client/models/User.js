@@ -3,7 +3,7 @@ var User = Backbone.Model.extend({
   defaults: {
     name: "Doug's Beard",
     email: "doug@hackreactor.com",
-    skills: []
+    skills: {}
   },
 
   url: "/api/users/",

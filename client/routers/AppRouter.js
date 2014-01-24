@@ -3,7 +3,7 @@ var AppRouter = Backbone.Router.extend({
   routes: {
     "": "showSkills",
     "skills": "showSkills",
-    "create": "create"
+    "submit": "submit"
   },
 
   showSkills: function(){
@@ -30,14 +30,17 @@ var AppRouter = Backbone.Router.extend({
     });
   },
 
-  create: function(){
+  submit: function(){
     this.createUserView = new CreateUserView({
       model: User
     });
+    $('body').html();
     $('body').html(this.createUserView.render().el);
+
   },
 
   initialize: function(options){
+    
     return this;
   }
 });

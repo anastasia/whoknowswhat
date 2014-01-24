@@ -7,7 +7,7 @@ var UserEntryView = Backbone.View.extend({
 
     var skillCount = {};
     _.each(this.collection.models, function(user, key, collection){
-      _.each(user.attributes.skills, function(skill){
+      _.each(user.attributes.skills, function(skillLevel, skill){
         if (!skillCount[skill]) {
           skillCount[skill] = 1;
         } else {
@@ -18,12 +18,11 @@ var UserEntryView = Backbone.View.extend({
 
     var skills = _.keys(skillCount).sort();
 
-    console.log(skills);
-
     var templateObj = {
       model: this.model.toJSON(),
       skills: skills
     };
+    console.log(this.model);
     this.$el.html(this.template(templateObj));
 
     // this.$el.html(this.template(this.model.toJSON()));

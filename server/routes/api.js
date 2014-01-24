@@ -9,38 +9,46 @@ var users = [
     id: 1,
     name: "Doug's Beard",
     email: "doug@hackreactor.com",
-    skills: ["Angular", "Beard"]
+    skills: {
+      "Angular": "Expert",
+      "Beard": "Expert"
+    }
   },
   {
     id: 2,
     name: "Marcus",
     email: "Marcus@hackreactor.com",
-    skills: ["Everything"]
+    skills: {
+      "Everything": "Expert"
+    }
   },
   {
     id: 3,
     name: "Doug",
     email: "doug@hackreactor.com",
-    skills: ["Beard", "Goofing", "Talking"]
+    skills: {
+      "Beard": "Expert",
+      "Goofing": "Expert",
+      "Talking": "Expert"
+    }
   },
   {
     id: 4,
     name: "Fred",
     email: "fred@hackreactor.com",
-    skills: ["Node", "Angular", "Backbone", "Git"]
+    skills: {
+      "Node": "Expert",
+      "Angular": "Expert",
+      "Backbone": "Expert",
+      "Git": "Expert"
+    }
   }
 ];
-
-var skills = {
-  "Angular": [1],
-  "Beard": [1],
-  "Everything": [1]
-};
 
 var getSkills = function(users){
   var skillCount = {};
   _.each(users, function(user, key, collection){
-    _.each(user.skills, function(skill){
+    _.each(user.skills, function(skillLevel, skill){
       if (!skillCount[skill]) {
         skillCount[skill] = 1;
       } else {
