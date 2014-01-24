@@ -2,15 +2,39 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="client/bower_components/foundation/css/foundation.min.css" rel="stylesheet">
+    <link href="client/bower_components/foundation/css/foundation.css" rel="stylesheet">
+    <link href="client/assets/extra.css" rel="stylesheet">
+    <title>Skills matrix</title>
   </head>
   <body>
+
+    <nav class="top-bar hide-for-small" data-topbar>
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="/">Skills Matrix</a></h1>
+        </li>
+      </ul>
+
+      <section class="top-bar-section">
+        <ul class="right">
+          <li class="divider"></li>
+          <li>
+            <a href="/submit">Submit</a>
+          </li>
+        </ul>
+      </section>
+    </nav>
+
+    <!-- initialize bower components -->
     <script src="client/bower_components/jquery/jquery.js"></script>
     <script src="client/bower_components/underscore/underscore.js"></script>
     <script src="client/bower_components/backbone/backbone.js"></script>
+
+    <!-- initialize templates -->
+    <script src="client/templates/userTemplates.js"></script>
+    <script src="client/templates/submitTemplates.js"></script>
     
     <!-- initialize User model, collection, and views -->
-    <script src="client/templates/userTemplates.js"></script>
     <script src="client/models/User.js"></script>
     <script src="client/collections/UserCollection.js"></script>
     <script src="client/views/UserEntryView.js"> </script>
@@ -30,17 +54,5 @@
     <script src="client/views/AppView.js"> </script>
     <script src="client/models/App.js"> </script>
 
-    <!--
-      <script>
-        $(function(){
-          var app = new App({});
-          // build a view for the top level of the whole app
-          var appView = new AppView({model: app});
-
-          // put the view onto the screen
-          $('body').append(appView.render());
-        });
-      </script>
-    -->
   </body>
 </html>

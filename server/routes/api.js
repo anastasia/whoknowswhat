@@ -9,26 +9,46 @@ var users = [
     id: 1,
     name: "Doug's Beard",
     email: "doug@hackreactor.com",
-    skills: ["Angular", "Beard"]
+    skills: {
+      "Angular": "Expert",
+      "Beard": "Expert"
+    }
   },
   {
     id: 2,
     name: "Marcus",
     email: "Marcus@hackreactor.com",
-    skills: ["Everything"]
+    skills: {
+      "Everything": "Expert"
+    }
+  },
+  {
+    id: 3,
+    name: "Doug",
+    email: "doug@hackreactor.com",
+    skills: {
+      "Beard": "Expert",
+      "Trolling": "Expert",
+      "Talking": "Expert"
+    }
+  },
+  {
+    id: 4,
+    name: "Fred",
+    email: "fred@hackreactor.com",
+    skills: {
+      "Node": "Expert",
+      "Angular": "Expert",
+      "Backbone": "Expert",
+      "Git": "Expert"
+    }
   }
 ];
-
-var skills = {
-  "Angular": [1],
-  "Beard": [1],
-  "Everything": [1]
-};
 
 var getSkills = function(users){
   var skillCount = {};
   _.each(users, function(user, key, collection){
-    _.each(user.skills, function(skill){
+    _.each(user.skills, function(skillLevel, skill){
       if (!skillCount[skill]) {
         skillCount[skill] = 1;
       } else {
@@ -36,6 +56,7 @@ var getSkills = function(users){
       }
     });
   });
+
   return skillCount;
 };
 
@@ -45,4 +66,20 @@ exports.users = function(req, res){
 
 exports.skills = function(req, res){
   res.json(getSkills(users));
+};
+
+exports.addUser = function(req, res){
+  console.log("HEY, saved");
+  users.push(  {
+    id: 5,
+    name: "Fredxx",
+    email: "fred@hackreactor.com",
+    skills: {
+      "Node": "Expert",
+      "Angular": "Expert",
+      "Backbone": "Expert",
+      "Git": "Expert"
+    }
+  });
+  res.send();
 };

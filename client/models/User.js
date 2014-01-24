@@ -3,13 +3,13 @@ var User = Backbone.Model.extend({
   defaults: {
     name: "Doug's Beard",
     email: "doug@hackreactor.com",
-    skills: []
+    skills: {}
   },
 
   url: "/api/users/",
 
   initialize: function(params){
-    // this.set()
+    // this.set('name', "Doug's Beard");
   }
 
 });

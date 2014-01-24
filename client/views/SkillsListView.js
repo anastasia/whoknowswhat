@@ -4,6 +4,8 @@ var SkillsListView = Backbone.View.extend({
     this.collection.fetch();
   },
 
+  tagName: 'table',
+
   render: function(eventName){
     _.each(this.collection.models, function(skill){
       var skillEntryView = new SkillEntryView({model: skill});

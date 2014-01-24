@@ -1,26 +1,21 @@
 var userTemplates = {
   usersView:
-    "<p>User <%= id %>:" +
-       "<ul>" +
-         "<li>" +
-           "Name: <a href=\"mailto:<%= email %>?subject=Hi <%= name %>, I need help!\"><%= name %></a>" +
-         "</li>" +
-         "<li>Email: <%= email %></li>" +
-         "<li>Skills: " +
-           "<ul>"+
-              "<% _.each(skills, function(value){%>" +
-                "<li><%= value %></li>" +
-              "<% }) %>" +
-           "</ul>" +
-         "</li>" +
-       "</ul>" +
-     "</p>",
-  skillsView:
-    // "skills here!",
-    "<% _.each(obj, function(value, key){%>" +
-      "<li><%= key %></li>" +
+    "<th column='name'>" +
+      "<a href=\"mailto:<%= model.email %>?subject=Hi <%= model.name %>, I need help!\">" +
+      "<%= model.name %>" +
+    "</th>" +
+    "<% _.each(skills, function(skill, key){" +
+      "var skillLevel = 'None';" +
+      "_.each(model.skills, function(value, key){" +
+        "if (key === skill){" +
+          "skillLevel = value;" +
+        "}"  +
+      "});" +
+      "%><th><%= skillLevel %></th>" +
     "<% }) %>",
-  tableHeader:
-    "<p>"
-
+  skillsView:
+    "<th column='name' class='firstRow'></th>" +
+    "<% _.each(obj, function(value, key){%>" +
+      "<th column='<%= value %>' class='firstRow'><%= value %></th>" +
+    "<% }) %>"
 };

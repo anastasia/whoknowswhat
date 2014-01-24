@@ -3,46 +3,50 @@ var AppRouter = Backbone.Router.extend({
   routes: {
     "": "showSkills",
     "skills": "showSkills",
-    "create": "create"
+    "submit": "submit"
   },
 
   showSkills: function(){
     // this.skills = new 
     this.users = new UserCollection();
     this.skills = new Skills();
+    this.createUserView = new CreateUserView({
+      model: new User(),
+      collection: this.users
+    });
+    $('body').append(this.createUserView.render().el);
+
     this.skills.fetch({
       success: function(model, response, options){
-        this.skillsListView = new SkillsListView({
-          collection: this.skills
-        });
+        this.skillsListView = new SkillsListView({collection: this.skills});
         $('body').append(this.skillsListView.render().el);
-      }.bind(this),
-      error: function(err){
-        console.log(err);
-      }
-    });
-    this.users.fetch({
-      success: function(model, response, options){
-        this.usersListView = new UsersListView({
-          collection: this.users
+        this.users.fetch({
+          success: function(model, response, options){
+            this.usersListView = new UsersListView({collection: this.users});
+            $('thead').after(this.usersListView.render().el);
+          }.bind(this),
+          error: function(err){
+            console.log(err);
+          }
         });
-        $('body').append(this.usersListView.render().el);
       }.bind(this),
       error: function(err){
         console.log(err);
       }
     });
-    // debugger;
   },
 
-  create: function(){
+  submit: function(){
     this.createUserView = new CreateUserView({
       model: User
     });
+    // $('body').html();
     $('body').html(this.createUserView.render().el);
+
   },
 
   initialize: function(options){
+    
     return this;
   }
 });

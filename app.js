@@ -52,6 +52,8 @@ app.get('/client/*', routes.client);
 app.get('/api/users/', api.users);
 app.get('/api/skills/', api.skills);
 
+app.post('/api/users/', api.addUser);
+
 //
 // create and launch server
 //
