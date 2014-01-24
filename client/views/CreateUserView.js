@@ -1,11 +1,9 @@
 var CreateUserView = Backbone.View.extend({
   events: {
     "submit": "submit"
-
   },
 
   submit: function(e){
-    // debugger;
     e.preventDefault();  // preventing default submission..
     var newUserName = $(e.currentTarget).find('input[name="name"]').val();  // getting new form values..
     var newUserEmail = $(e.currentTarget).find('input[name="email"]').val();  // getting new form values..
@@ -13,9 +11,10 @@ var CreateUserView = Backbone.View.extend({
     var user = new User({
       name: newUserName,
       email: newUserEmail,
-      skills: newUserSkills
+      skills: newUserSkills,
+      collection: this.collection
     });// creating a new person object..
-    user.save();
+    user.save(); // TODO: figure out if this is correct call
     this.collection.add(user); // adding this to current collection..
     // this.collection.sync(user, this.collection);
   },
@@ -32,8 +31,6 @@ var CreateUserView = Backbone.View.extend({
     "</p>"
   ),
   render: function(eventName){
-    // debugger;
-    console.log(this.model.sync);
     this.$el.html(this.template(this.model));
     return this;
   }
