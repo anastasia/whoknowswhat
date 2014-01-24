@@ -67,3 +67,19 @@ exports.users = function(req, res){
 exports.skills = function(req, res){
   res.json(getSkills(users));
 };
+
+exports.addUser = function(req, res){
+  console.log("HEY, saved");
+  users.push(  {
+    id: 5,
+    name: "Fredxx",
+    email: "fred@hackreactor.com",
+    skills: {
+      "Node": "Expert",
+      "Angular": "Expert",
+      "Backbone": "Expert",
+      "Git": "Expert"
+    }
+  });
+  res.send();
+};

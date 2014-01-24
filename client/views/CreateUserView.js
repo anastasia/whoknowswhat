@@ -15,7 +15,9 @@ var CreateUserView = Backbone.View.extend({
       email: newUserEmail,
       skills: newUserSkills
     });// creating a new person object..
+    user.save();
     this.collection.add(user); // adding this to current collection..
+    // this.collection.sync(user, this.collection);
   },
 
   template: _.template(
