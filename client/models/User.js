@@ -9,7 +9,7 @@ var User = Backbone.Model.extend({
   url: "/api/users/",
 
   initialize: function(params){
-    // this.set()
+    // this.set('name', "Doug's Beard");
   }
 
 });

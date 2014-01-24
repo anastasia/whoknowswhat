@@ -10,6 +10,12 @@ var AppRouter = Backbone.Router.extend({
     // this.skills = new 
     this.users = new UserCollection();
     this.skills = new Skills();
+    this.createUserView = new CreateUserView({
+      model: new User(),
+      collection: this.users
+    });
+    $('body').append(this.createUserView.render().el);
+
     this.skills.fetch({
       success: function(model, response, options){
         this.skillsListView = new SkillsListView({collection: this.skills});
@@ -34,7 +40,7 @@ var AppRouter = Backbone.Router.extend({
     this.createUserView = new CreateUserView({
       model: User
     });
-    $('body').html();
+    // $('body').html();
     $('body').html(this.createUserView.render().el);
 
   },

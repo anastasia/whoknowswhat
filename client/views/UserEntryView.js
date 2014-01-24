@@ -22,7 +22,6 @@ var UserEntryView = Backbone.View.extend({
       model: this.model.toJSON(),
       skills: skills
     };
-    console.log(this.model);
     this.$el.html(this.template(templateObj));
 
     // this.$el.html(this.template(this.model.toJSON()));

@@ -28,7 +28,7 @@ var users = [
     email: "doug@hackreactor.com",
     skills: {
       "Beard": "Expert",
-      "Goofing": "Expert",
+      "Trolling": "Expert",
       "Talking": "Expert"
     }
   },
@@ -57,7 +57,6 @@ var getSkills = function(users){
     });
   });
 
-  console.log(_.keys(skillCount).sort());
   return skillCount;
 };
 
