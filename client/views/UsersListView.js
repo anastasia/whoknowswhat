@@ -7,6 +7,10 @@ var UsersListView = Backbone.View.extend({
       this.collection.fetch({
         success: function(model, response, options){
           this.render();
+          // appRouter.skillsListView = new SkillsListView({collection: this.skills});
+          $('table').empty();
+          $('table').append(appRouter.skillsListView.render().el);
+          $('thead').after(appRouter.usersListView.render().el);
         }.bind(this)
       });
     }, this);
