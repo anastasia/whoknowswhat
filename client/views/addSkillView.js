@@ -22,7 +22,7 @@ var CreateUserView = Backbone.View.extend({
 
   addSkill: function(e){
     e.preventDefault();
-    alert("HEY")
+    
   },
 
   template: _.template(

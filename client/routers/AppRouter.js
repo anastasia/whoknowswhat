@@ -19,7 +19,6 @@ var AppRouter = Backbone.Router.extend({
   // },
 
   showSkills: function(){
-
     this.users = new UserCollection();
 
     // // render Create User Form

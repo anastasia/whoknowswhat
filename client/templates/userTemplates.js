@@ -38,5 +38,12 @@ var userTemplates = {
           "</li>" +
         "</ul>" +
       "</section>" +
-    "</nav>"
+    "</nav>",
+  addSkillView:
+    "Skill: <input name='skills' class='skill' placeholder='e.g., Angular'></input>" +
+       "<select id='skillList'>" +
+         "<option value = '1'>1 (beginner)</option>" +
+         "<option value = '2'>2 (proficient)</option>" +
+         "<option value = '3'>3 (expert)</option>" +
+       "</select><br>"
 };
