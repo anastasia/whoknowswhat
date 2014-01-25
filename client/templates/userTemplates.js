@@ -14,8 +14,10 @@ var userTemplates = {
       "%><th><%= skillLevel %></th>" +
     "<% }) %>",
   skillsView:
-    "<th column='name' class='firstRow'></th>" +
-    "<% _.each(obj, function(value, key){%>" +
-      "<th column='<%= value %>' class='firstRow'><%= value %></th>" +
-    "<% }) %>"
+    "<thead>" +
+      "<th column='name' class='firstRow'></th>" +
+      "<% _.each(obj, function(value, key){%>" +
+        "<th column='<%= value %>' class='firstRow'><%= value %></th>" +
+      "<% }) %>" +
+    "</thead>"
 };

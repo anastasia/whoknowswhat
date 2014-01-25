@@ -20,9 +20,9 @@ var AppRouter = Backbone.Router.extend({
     $('body').append(this.createUserView.render().el);
 
     // populate table
-    this.skills.fetch({
-      success: function(model, response, options){
-        this.skillsListView = new SkillsListView({collection: this.skills});
+    // this.skills.fetch({
+    //   success: function(model, response, options){
+        this.skillsListView = new SkillsListView({collection: this.users});
         $('body').append(this.skillsListView.render().el);
         this.users.fetch({
           success: function(model, response, options){
@@ -33,11 +33,11 @@ var AppRouter = Backbone.Router.extend({
             console.log(err);
           }
         });
-      }.bind(this),
-      error: function(err){
-        console.log(err);
-      }
-    });
+      // }.bind(this),
+      // error: function(err){
+      //   console.log(err);
+    //   }
+    // });
   },
 
   submit: function(){
