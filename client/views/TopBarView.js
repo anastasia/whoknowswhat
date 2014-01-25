@@ -16,7 +16,7 @@ var TopBarView = Backbone.View.extend({
 
   triggerSubmit: function(e){
     e.preventDefault();
-    alert("SUP");
+    appRouter.navigate("submit", {trigger: true});
   },
 
   render: function(eventName){

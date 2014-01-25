@@ -44,7 +44,7 @@ var AppRouter = Backbone.Router.extend({
 
   submit: function(){
     // render Create User Form
-    alert("HI")
+    // alert("HI")
     this.createUserView = new CreateUserView({
       model: new User(),
       collection: this.users
