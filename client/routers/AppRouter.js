@@ -6,16 +6,28 @@ var AppRouter = Backbone.Router.extend({
     "submit": "submit"
   },
 
+  initialize: function(){
+    var $topbar = $('<div>');
+    var topbar = new TopBarView({model: new User()});
+    $topbar.append(topbar.el);
+    $('body').append($topbar);
+    return this;
+  },
+
+  // events: {
+  //   "click": "submit"
+  // },
+
   showSkills: function(){
 
     this.users = new UserCollection();
 
-    // render Create User Form
-    this.createUserView = new CreateUserView({
-      model: new User(),
-      collection: this.users
-    });
-    $('body').append(this.createUserView.render().el);
+    // // render Create User Form
+    // this.createUserView = new CreateUserView({
+    //   model: new User(),
+    //   collection: this.users
+    // });
+    // $('body').append(this.createUserView.render().el);
 
     this.skillsListView = new SkillsListView({collection: this.users});
     $('body').append(this.skillsListView.render().el);
@@ -31,15 +43,19 @@ var AppRouter = Backbone.Router.extend({
   },
 
   submit: function(){
+    // render Create User Form
+    alert("HI")
     this.createUserView = new CreateUserView({
-      model: User
+      model: new User(),
+      collection: this.users
     });
-    $('body').html(this.createUserView.render().el);
-  },
-
-  initialize: function(options){
-    return this;
+    $('body').empty();
+    $('body').append(this.createUserView.render().el);
   }
+
+  // initialize: function(options){
+  //   return this;
+  // }
 });
 
 var appRouter = new AppRouter();

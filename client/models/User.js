@@ -12,4 +12,8 @@ var User = Backbone.Model.extend({
     // this.set('name', "Doug's Beard");
   }
 
+  // submit: function(){
+  //   alert("hi")
+  // }
+
 });

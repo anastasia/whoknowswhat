@@ -19,5 +19,24 @@ var userTemplates = {
       "<% _.each(obj, function(value, key){%>" +
         "<th column='<%= value %>' class='firstRow'><%= value %></th>" +
       "<% }) %>" +
-    "</thead>"
+    "</thead>",
+  topBarView:
+    "<nav class='top-bar hide-for-small' data-topbar>" +
+      "<ul class='title-area'>" +
+        "<li class='name'>" +
+          "<h1><a class='home' href='#/'>Skills Matrix</a></h1>" +
+          // "<h1><a href='/'>Skills Matrix</a></h1>" +
+        "</li>" +
+      "</ul>" +
+
+      "<section class='top-bar-section'>" +
+        "<ul class='right'>" +
+          "<li class='divider'></li>" +
+          "<li>" +
+            "<a class='submit' href='#/submit'>Submit</a>" +
+            // "<a href='/submit'>Submit</a>" +
+          "</li>" +
+        "</ul>" +
+      "</section>" +
+    "</nav>"
 };
