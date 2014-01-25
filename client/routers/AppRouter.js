@@ -9,7 +9,8 @@ var AppRouter = Backbone.Router.extend({
   showSkills: function(){
     // this.skills = new 
     this.users = new UserCollection();
-    this.skills = new Skills();
+
+    // this.skills = new Skills();
 
     // render Create User Form
     this.createUserView = new CreateUserView({
@@ -49,7 +50,7 @@ var AppRouter = Backbone.Router.extend({
   },
 
   initialize: function(options){
-    
+    // TODO: set listeners on models / collections
     return this;
   }
 });
