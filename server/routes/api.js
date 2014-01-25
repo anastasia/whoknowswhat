@@ -45,28 +45,10 @@ var users = [
   }
 ];
 
-// var getSkills = function(users){
-//   var skillCount = {};
-//   _.each(users, function(user, key, collection){
-//     _.each(user.skills, function(skillLevel, skill){
-//       if (!skillCount[skill]) {
-//         skillCount[skill] = 1;
-//       } else {
-//         skillCount[skill] += 1;
-//       }
-//     });
-//   });
-//   return skillCount;
-// };
 
 exports.users = function(req, res){
   res.json(users);
 };
-
-// exports.skills = function(req, res){
-//   console.log("SKILLS")
-//   res.json(getSkills(users));
-// };
 
 exports.addUser = function(req, res){
   console.log(JSON.parse(req.body.skills))

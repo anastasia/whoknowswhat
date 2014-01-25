@@ -23,10 +23,6 @@ var UserCollection = Backbone.Collection.extend({
     return skillCount;
   },
 
-  fetchUsers: function(){
-
-  },
-
   sortUsers: function(attr){
     this.sortAttribute = attr;
     this.sort();
