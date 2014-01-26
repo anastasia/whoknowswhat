@@ -4,7 +4,6 @@ var AddSkillView = Backbone.View.extend({
     this.$el.attr( "class", "skill" );
   },
 
-
   template: _.template(userTemplates.addSkillView),
 
   render: function(eventName){

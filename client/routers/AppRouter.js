@@ -19,6 +19,8 @@ var AppRouter = Backbone.Router.extend({
   // },
 
   showSkills: function(){
+    $('#createUserView').empty();
+
     this.users = new UserCollection();
 
     // // render Create User Form
@@ -48,7 +50,7 @@ var AppRouter = Backbone.Router.extend({
       model: new User(),
       collection: this.users
     });
-    $('body').empty();
+    $('#skillsListView').empty();
     $('body').append(this.createUserView.render().el);
   }
 

@@ -1,4 +1,9 @@
 var CreateUserView = Backbone.View.extend({
+
+  initialize: function(){
+    this.$el.attr( "id", "createUserView");
+  },
+
   events: {
     "submit": "submit",
     "click button.addSkill": "addSkill"
@@ -9,7 +14,7 @@ var CreateUserView = Backbone.View.extend({
     var user = this.getFormAttributes(e);
     user.save();                    // call to server
     this.collection.add(user);      // add this to current collection
-    appRouter.navigate("skills", {trigger: true});
+    appRouter.navigate("", {trigger: true});
   },
 
   getFormAttributes: function(e){

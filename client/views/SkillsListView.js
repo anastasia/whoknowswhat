@@ -1,5 +1,7 @@
 var SkillsListView = Backbone.View.extend({
+
   initialize: function(){
+    this.$el.attr( "id", "skillsListView" );
 
     this.collection.bind("reset", this.render, this);
     this.collection.fetch();
@@ -15,7 +17,7 @@ var SkillsListView = Backbone.View.extend({
         }.bind(this)
       });
     }, this);
-    
+
   },
 
   template: _.template(userTemplates.skillsView), // in /client/templates/userTemplates.js
