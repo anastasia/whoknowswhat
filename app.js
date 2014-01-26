@@ -28,6 +28,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+app.use(express.bodyParser());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -43,14 +44,9 @@ if ('development' == app.get('env')) {
 // routes
 //
 
-// app.get('/', function(request, response){
-//   response.sendfile('../client/index.html');
-// });
-
 app.get('/', routes.index);
 app.get('/client/*', routes.client);
 app.get('/api/users/', api.users);
-app.get('/api/skills/', api.skills);
 
 app.post('/api/users/', api.addUser);
 

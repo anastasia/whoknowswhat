@@ -3,7 +3,6 @@ var App = Backbone.Model.extend({
     Backbone.history.start({pushState: true});
     appRouter.navigate('/', {trigger: true});
   }
-
 });
 
 var app = new App();

@@ -8,10 +8,10 @@
   </head>
   <body>
 
-    <nav class="top-bar hide-for-small" data-topbar>
+<!--     <nav class="top-bar hide-for-small" data-topbar>
       <ul class="title-area">
         <li class="name">
-          <h1><a href="/">Skills Matrix</a></h1>
+          <h1><a href="#/">Skills Matrix</a></h1>
         </li>
       </ul>
 
@@ -19,11 +19,11 @@
         <ul class="right">
           <li class="divider"></li>
           <li>
-            <a href="/submit">Submit</a>
+            <a href="#/submit">Submit</a>
           </li>
         </ul>
       </section>
-    </nav>
+    </nav> -->
 
     <!-- initialize bower components -->
     <script src="client/bower_components/jquery/jquery.js"></script>
@@ -33,25 +33,26 @@
     <!-- initialize templates -->
     <script src="client/templates/userTemplates.js"></script>
     <script src="client/templates/submitTemplates.js"></script>
+
+    <!-- initialize other views -->
+    <script src="client/views/TopBarView.js"> </script>
+    <script src="client/views/HeaderTextView.js"> </script>
     
     <!-- initialize User model, collection, and views -->
     <script src="client/models/User.js"></script>
     <script src="client/collections/UserCollection.js"></script>
     <script src="client/views/UserEntryView.js"> </script>
     <script src="client/views/UsersListView.js"> </script>
+    <script src="client/views/AddSkillView.js"> </script>
     <script src="client/views/CreateUserView.js"> </script>
 
     <!-- initialize Skills model, collection, and views -->
-    <script src="client/models/Skill.js"></script>
-    <script src="client/collections/Skills.js"></script>
-    <script src="client/views/SkillEntryView.js"> </script>
     <script src="client/views/SkillsListView.js"> </script>
 
     <!-- initialize router -->
     <script src="client/routers/AppRouter.js"></script>
 
     <!-- initialize App model and view -->
-    <script src="client/views/AppView.js"> </script>
     <script src="client/models/App.js"> </script>
 
   </body>

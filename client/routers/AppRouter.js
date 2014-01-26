@@ -6,29 +6,32 @@ var AppRouter = Backbone.Router.extend({
     "submit": "submit"
   },
 
-  showSkills: function(){
-    // this.skills = new 
-    this.users = new UserCollection();
-    this.skills = new Skills();
-    this.createUserView = new CreateUserView({
-      model: new User(),
-      collection: this.users
-    });
-    $('body').append(this.createUserView.render().el);
+  initialize: function(){
+    var $topbar = $('<div>');
+    var topbar = new TopBarView({model: new User()});
+    $topbar.append(topbar.el);
+    $('body').append($topbar);
+    return this;
+  },
 
-    this.skills.fetch({
+  // events: {
+  //   "click": "submit"
+  // },
+
+  showSkills: function(){
+    $('#createUserView').empty();
+
+    this.headerText = new HeaderTextView();
+    $('body').append(this.headerText.render().el);
+
+    this.users = new UserCollection();
+
+    this.skillsListView = new SkillsListView({collection: this.users});
+    $('body').append(this.skillsListView.render().el);
+    this.users.fetch({
       success: function(model, response, options){
-        this.skillsListView = new SkillsListView({collection: this.skills});
-        $('body').append(this.skillsListView.render().el);
-        this.users.fetch({
-          success: function(model, response, options){
-            this.usersListView = new UsersListView({collection: this.users});
-            $('thead').after(this.usersListView.render().el);
-          }.bind(this),
-          error: function(err){
-            console.log(err);
-          }
-        });
+        this.usersListView = new UsersListView({collection: this.users});
+        $('thead').after(this.usersListView.render().el);
       }.bind(this),
       error: function(err){
         console.log(err);
@@ -37,18 +40,20 @@ var AppRouter = Backbone.Router.extend({
   },
 
   submit: function(){
+    // render Create User Form
+    // alert("HI")
     this.createUserView = new CreateUserView({
-      model: User
+      model: new User(),
+      collection: this.users
     });
-    // $('body').html();
-    $('body').html(this.createUserView.render().el);
-
-  },
-
-  initialize: function(options){
-    
-    return this;
+    $('#skillsListView').empty();
+    $('#hero').empty();
+    $('body').append(this.createUserView.render().el);
   }
+
+  // initialize: function(options){
+  //   return this;
+  // }
 });
 
 var appRouter = new AppRouter();

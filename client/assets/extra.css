@@ -1,3 +1,17 @@
 .firstRow {
   padding: .5em;
 }
+
+.top-bar {
+  background: #45a8f1;
+}
+
+input {
+  height: 2em;
+  margin: 1em;
+}
+
+select {
+  width: 175px;
+  font-size: 12px;
+}
