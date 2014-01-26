@@ -24,7 +24,7 @@ var userTemplates = {
     "<nav class='top-bar hide-for-small' data-topbar>" +
       "<ul class='title-area'>" +
         "<li class='name'>" +
-          "<h1><a class='home' href='#/'>Hack Reactor Skills Matrix</a></h1>" +
+          "<h1><a class='home' href='#/'><img style='height: 30px' src='https://hrhq.squarespace.com/assets/images/logo@2x.png'/> Skills Matrix</a></h1>" +
           // "<h1><a href='/'>Skills Matrix</a></h1>" +
         "</li>" +
       "</ul>" +
