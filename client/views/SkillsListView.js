@@ -2,6 +2,7 @@ var SkillsListView = Backbone.View.extend({
 
   initialize: function(){
     this.$el.attr( "id", "skillsListView" );
+    this.$el.attr("class", "twelve columns text-center");
 
     this.collection.bind("reset", this.render, this);
     this.collection.fetch();

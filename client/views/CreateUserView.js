@@ -1,7 +1,8 @@
 var CreateUserView = Backbone.View.extend({
 
   initialize: function(){
-    this.$el.attr( "id", "createUserView");
+    this.$el.attr("id", "createUserView");
+    this.$el.attr("class", "twelve columns text-center");
   },
 
   events: {

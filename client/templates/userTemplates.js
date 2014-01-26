@@ -15,16 +15,16 @@ var userTemplates = {
     "<% }) %>",
   skillsView:
     "<thead>" +
-      "<th column='name' class='firstRow'></th>" +
+      "<th></th>" +
       "<% _.each(obj, function(value, key){%>" +
-        "<th column='<%= value %>' class='firstRow'><%= value %></th>" +
+        "<th class='text-center'><%= value %></th>" +
       "<% }) %>" +
     "</thead>",
   topBarView:
     "<nav class='top-bar hide-for-small' data-topbar>" +
       "<ul class='title-area'>" +
         "<li class='name'>" +
-          "<h1><a class='home' href='#/'>Skills Matrix</a></h1>" +
+          "<h1><a class='home' href='#/'>Hack Reactor Skills Matrix</a></h1>" +
           // "<h1><a href='/'>Skills Matrix</a></h1>" +
         "</li>" +
       "</ul>" +
@@ -45,5 +45,8 @@ var userTemplates = {
          "<option value = 'Some'>Some (I've used this)</option>" +
          "<option value = 'Good'>Good (I can use this)</option>" +
          "<option value = 'Expert'>Expert (I can teach this)</option>" +
-       "</select><br>"
+       "</select><br>",
+  headerText:
+    "<h1>Welcome to the Hack Reactor skills matrix.</h1>" + 
+    "<p>See the table below to find the right person to ask for help.</p>"
 };

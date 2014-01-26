@@ -9,6 +9,7 @@ var TopBarView = Backbone.View.extend({
 
   events: {
     // "click .home":
+    "click a.home": "triggerHome",
     "click a.submit": "triggerSubmit"
   },
 
@@ -17,6 +18,11 @@ var TopBarView = Backbone.View.extend({
   triggerSubmit: function(e){
     e.preventDefault();
     appRouter.navigate("submit", {trigger: true});
+  },
+
+  triggerHome: function(e){
+    e.preventDefault();
+    appRouter.navigate("/", {trigger: true});
   },
 
   render: function(eventName){

@@ -21,14 +21,10 @@ var AppRouter = Backbone.Router.extend({
   showSkills: function(){
     $('#createUserView').empty();
 
-    this.users = new UserCollection();
+    this.headerText = new HeaderTextView();
+    $('body').append(this.headerText.render().el);
 
-    // // render Create User Form
-    // this.createUserView = new CreateUserView({
-    //   model: new User(),
-    //   collection: this.users
-    // });
-    // $('body').append(this.createUserView.render().el);
+    this.users = new UserCollection();
 
     this.skillsListView = new SkillsListView({collection: this.users});
     $('body').append(this.skillsListView.render().el);
@@ -51,6 +47,7 @@ var AppRouter = Backbone.Router.extend({
       collection: this.users
     });
     $('#skillsListView').empty();
+    $('#hero').empty();
     $('body').append(this.createUserView.render().el);
   }
 
