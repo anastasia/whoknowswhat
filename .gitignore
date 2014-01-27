@@ -41,7 +41,6 @@ npm-debug.log
 *.sublime-workspace
 
 # bower
-client/bower_components
 
 # audio
 *.aif
