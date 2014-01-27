@@ -24,10 +24,9 @@ var userTemplates = {
     "<nav class='top-bar hide-for-small' data-topbar>" +
       "<ul class='title-area'>" +
         "<li class='name'>" +
-          "<h1><a class='home' href='#/'><img style='height: 30px' src='https://hrhq.squarespace.com/assets/images/logo@2x.png'/> Skills Matrix</a></h1>" +
+          "<h1><a class='home' href='#/'>Skills Matrix</a></h1>" +
         "</li>" +
       "</ul>" +
-
       "<section class='top-bar-section'>" +
         "<ul class='right'>" +
           "<li class='divider'></li>" +
@@ -45,6 +44,22 @@ var userTemplates = {
          "<option value = 'Expert'>Expert (I can teach this)</option>" +
        "</select><br>",
   headerText:
-    "<h1>Welcome to the Hack Reactor skills matrix.</h1>" + 
-    "<p>See the table below to find the right person to ask for help.</p>"
+    "<h1>Welcome to the skills matrix.</h1>" +
+    "<p>See the table below to find the right person to ask for help.</p>",
+  submitSkills:
+    "<p>" +
+      "Enter your skills here:" +
+      "<form>" +
+        "Name: <input type='text' name='name' placeholder='<%= attributes.name %>'></input><br>" +
+        "Email: <input type='email' name='email' placeholder='<%= attributes.email %>'></input><br>" +
+        "Skill: <input type='text' name='skills' class='skill' placeholder='e.g., Angular'></input>" +
+           "<select class='skillList'>" +
+             "<option value = 'Some'>Some (I've used this)</option>" +
+             "<option value = 'Good'>Good (I can use this)</option>" +
+             "<option value = 'Expert'>Expert (I can teach this)</option>" +
+           "</select><br>" +
+        "<button class='addSkill'>Add Skill</button><br>" +
+        "<button type='submit'>Submit</button>" +
+      "</form>" +
+    "</p>"
 };

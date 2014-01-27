@@ -45,18 +45,7 @@ var CreateUserView = Backbone.View.extend({
     $('.addSkill').before(addSkillView.render().el); // append entry views to tbody
   },
 
-  template: _.template(
-    "<p>" +
-      "Enter your skills here:" +
-      "<form>" +
-        "Name: <input name='name' placeholder='<%= attributes.name %>'></input><br>" +
-        "Hack Reactor Email: <input name='email' placeholder='<%= attributes.email %>'></input><br>" +
-        userTemplates.addSkillView +
-        "<button class='addSkill'>Add Skill</button><br>" +
-        "<button type='submit'>Submit</button>" +
-      "</form>" +
-    "</p>"
-  ),
+  template: _.template(userTemplates.submitSkills),
 
   render: function(eventName){
     this.$el.html(this.template(this.model));

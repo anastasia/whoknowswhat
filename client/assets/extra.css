@@ -9,6 +9,7 @@
 input {
   height: 2em;
   margin: 1em;
+  width: 20em ;
 }
 
 select {
