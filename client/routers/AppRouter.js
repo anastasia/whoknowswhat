@@ -14,12 +14,9 @@ var AppRouter = Backbone.Router.extend({
     return this;
   },
 
-  // events: {
-  //   "click": "submit"
-  // },
-
   showSkills: function(){
-    $('#createUserView').empty();
+    // destroy old views
+    this.createUserView && this.createUserView.destroy();
 
     this.headerText = new HeaderTextView();
     $('body').append(this.headerText.render().el);
@@ -40,20 +37,19 @@ var AppRouter = Backbone.Router.extend({
   },
 
   submit: function(){
+    // destroy old views
+    this.headerText && this.headerText.destroy();
+    this.skillsListView && this.skillsListView.destroy();
+
     // render Create User Form
-    // alert("HI")
     this.createUserView = new CreateUserView({
       model: new User(),
       collection: this.users
     });
-    $('#skillsListView').empty();
-    $('#hero').empty();
+
     $('body').append(this.createUserView.render().el);
   }
 
-  // initialize: function(options){
-  //   return this;
-  // }
 });
 
 var appRouter = new AppRouter();

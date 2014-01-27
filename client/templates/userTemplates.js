@@ -25,7 +25,6 @@ var userTemplates = {
       "<ul class='title-area'>" +
         "<li class='name'>" +
           "<h1><a class='home' href='#/'><img style='height: 30px' src='https://hrhq.squarespace.com/assets/images/logo@2x.png'/> Skills Matrix</a></h1>" +
-          // "<h1><a href='/'>Skills Matrix</a></h1>" +
         "</li>" +
       "</ul>" +
 
@@ -34,7 +33,6 @@ var userTemplates = {
           "<li class='divider'></li>" +
           "<li>" +
             "<a class='submit' href='#/submit'>Submit</a>" +
-            // "<a href='/submit'>Submit</a>" +
           "</li>" +
         "</ul>" +
       "</section>" +

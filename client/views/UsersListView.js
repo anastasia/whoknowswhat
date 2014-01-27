@@ -46,6 +46,10 @@ var UsersListView = Backbone.View.extend({
 
   addUser: function(model, collection, options){
     this.render();
+  },
+
+  destroy: function(){
+    this.$el.remove();
   }
 
 });

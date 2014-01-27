@@ -10,5 +10,9 @@ var AddSkillView = Backbone.View.extend({
   render: function(eventName){
     this.$el.html(this.template(this.model));
     return this;
+  },
+
+  destroy: function(){
+    this.$el.remove();
   }
 });

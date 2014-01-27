@@ -10,6 +10,10 @@ var HeaderTextView = Backbone.View.extend({
   render: function(eventName){
     this.$el.html(this.template());
     return this;
+  },
+
+  destroy: function(){
+    this.$el.remove();
   }
 
-})
+});
