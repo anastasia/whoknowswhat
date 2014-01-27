@@ -19,7 +19,7 @@ var AppRouter = Backbone.Router.extend({
   // },
 
   showSkills: function(){
-    $('#createUserView').empty();
+    $('#createUserView').remove();
 
     this.headerText = new HeaderTextView();
     $('body').append(this.headerText.render().el);
@@ -46,8 +46,8 @@ var AppRouter = Backbone.Router.extend({
       model: new User(),
       collection: this.users
     });
-    $('#skillsListView').empty();
-    $('#hero').empty();
+    $('#skillsListView').remove();
+    $('#hero').remove();
     $('body').append(this.createUserView.render().el);
   }
 

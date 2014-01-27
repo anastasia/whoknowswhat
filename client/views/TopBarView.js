@@ -28,6 +28,10 @@ var TopBarView = Backbone.View.extend({
   render: function(eventName){
     this.$el.append(this.template());
     return this;
+  },
+
+  destroy: function(){
+    this.$el.remove();
   }
 
 });
