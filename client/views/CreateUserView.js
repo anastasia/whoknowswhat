@@ -50,7 +50,7 @@ var CreateUserView = Backbone.View.extend({
       "Enter your skills here:" +
       "<form>" +
         "Name: <input name='name' placeholder='<%= attributes.name %>'></input><br>" +
-        "Email: <input name='email' placeholder='<%= attributes.email %>'></input><br>" +
+        "Hack Reactor Email: <input name='email' placeholder='<%= attributes.email %>'></input><br>" +
         userTemplates.addSkillView +
         "<button class='addSkill'>Add Skill</button><br>" +
         "<button type='submit'>Submit</button>" +
