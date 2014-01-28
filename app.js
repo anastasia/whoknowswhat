@@ -37,16 +37,57 @@ var Bookshelf  = require('bookshelf');
 Bookshelf.PG = Bookshelf.initialize({
   client: 'pg',
   connection: {
-    host     : '127.0.0.1',
+    host     : 'localhost',
+    port     :  5432,
     user     : 'postgres',
-    // password : 'r0flcopter',
+    password : 'password',
     database : 'myapp_test',
     charset  : 'utf8'
   }
 });
 
-// query = client.query('CREATE TABLE visits (date date)');
-// query.on('end', function() { client.end(); });
+// var Bookshelf = require('bookshelf').PG;
+
+var User = Bookshelf.PG.Model.extend({
+  tableName: 'users',
+
+  initialize: function() {
+  },
+
+});
+
+console.log(User)
+
+User.forge({})
+  .query()
+  .where({
+    "email": "joey@hackreactor.com"
+  })
+  .select()
+  .then(function(model) {
+    console.log(model)
+  });
+
+// User.forge({})
+//   .query("where", "email", "=", "joey@hackreactor.com")
+//   .fetch()
+//   .then(function(model) {
+//     console.log(model)
+//   });
+
+// var TestModel = Bookshelf.PG.Model.extend({
+//     tableName: 'TestModel',
+
+//     initialize: function() {
+//     },
+
+//     name: 'foo'
+// });
+
+// var test = new TestModel({"name": "Joey"});
+// test.save().then(function(model){
+//   console.log("YEAH")
+// });
 
 //
 // development only - error checking
