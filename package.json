@@ -10,6 +10,7 @@
     "jade": "*",
     "underscore": "*",
     "mocha": "*",
-    "chai": "*"
+    "chai": "*",
+    "pg": "*"
   }
 }

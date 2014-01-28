@@ -52,7 +52,7 @@ var userTemplates = {
       "<form>" +
         "Name: <input type='text' name='name' placeholder='<%= attributes.name %>' required></input><br>" +
         "Email: <input type='email' name='email' placeholder='<%= attributes.email %>' required></input><br>" +
-        "Skill: <input type='text' name='skills' class='skill' placeholder='e.g., Angular' pattern='.{2,}' title='2 characters minimum'></input>" +
+        "Skill: <input type='text' name='skills' class='skill' placeholder='e.g., Angular' pattern='.{1,}' title='1 character minimum (and it better be C)'></input>" +
            "<select class='skillList'>" +
              "<option value = 'Some'>Some (I've used this)</option>" +
              "<option value = 'Good'>Good (I can use this)</option>" +

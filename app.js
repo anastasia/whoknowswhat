@@ -32,6 +32,22 @@ app.use(express.bodyParser());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+// When the app starts
+var Bookshelf  = require('bookshelf');
+Bookshelf.PG = Bookshelf.initialize({
+  client: 'pg',
+  connection: {
+    host     : '127.0.0.1',
+    user     : 'postgres',
+    // password : 'r0flcopter',
+    database : 'myapp_test',
+    charset  : 'utf8'
+  }
+});
+
+// query = client.query('CREATE TABLE visits (date date)');
+// query.on('end', function() { client.end(); });
+
 //
 // development only - error checking
 //
