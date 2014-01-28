@@ -10,6 +10,10 @@ var api = require('./server/routes/api');
 var http = require('http');
 var path = require('path');
 var _ = require('underscore');
+var Bookshelf  = require('bookshelf');
+
+var bookshelf = require('./server/db/development.js');
+// var bookshelf = require('./server/db/production.js');
 
 // initialize express
 
@@ -32,62 +36,6 @@ app.use(express.bodyParser());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
-// When the app starts
-var Bookshelf  = require('bookshelf');
-Bookshelf.PG = Bookshelf.initialize({
-  client: 'pg',
-  connection: {
-    host     : 'localhost',
-    port     :  5432,
-    user     : 'postgres',
-    password : 'password',
-    database : 'myapp_test',
-    charset  : 'utf8'
-  }
-});
-
-// var Bookshelf = require('bookshelf').PG;
-
-var User = Bookshelf.PG.Model.extend({
-  tableName: 'users',
-
-  initialize: function() {
-  },
-
-});
-
-console.log(User)
-
-User.forge({})
-  .query()
-  .where({
-    "email": "joey@hackreactor.com"
-  })
-  .select()
-  .then(function(model) {
-    console.log(model)
-  });
-
-// User.forge({})
-//   .query("where", "email", "=", "joey@hackreactor.com")
-//   .fetch()
-//   .then(function(model) {
-//     console.log(model)
-//   });
-
-// var TestModel = Bookshelf.PG.Model.extend({
-//     tableName: 'TestModel',
-
-//     initialize: function() {
-//     },
-
-//     name: 'foo'
-// });
-
-// var test = new TestModel({"name": "Joey"});
-// test.save().then(function(model){
-//   console.log("YEAH")
-// });
 
 //
 // development only - error checking
