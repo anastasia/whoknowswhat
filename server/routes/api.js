@@ -99,19 +99,34 @@ exports.users = function(req, res){
       console.log(model);
     });
 
-  new User({id: 1}).skills().fetch().then(function(user){
+  var newUser = new User({id: 1});
+
+  var userObj = {
+    skills: {}
+  };
+  newUser.fetch().then(function(user){
+    // console.log("the user");
+    // console.log(user);
+    _.extend(userObj, user.attributes);
+    console.log(userObj);
+  });
+
+  newUser.skills().fetch().then(function(user){
     _.each(user.models, function(value, key, collection){
-      console.log("user");
+      console.log("value.attributes")
       console.log(value.attributes);
+      _.extend(userObj.skills, value.attributes.name);
+      // console.log(value.attributes);
+      console.log(userObj);
     });
   });
 
-  new Skill({id: 2}).users().fetch().then(function(skill){
-    _.each(skill.models, function(value, key, collection){
-      console.log("skill");
-      console.log(value.attributes);
-    });
-  });
+  // new Skill({id: 2}).users().fetch().then(function(skill){
+  //   _.each(skill.models, function(value, key, collection){
+  //     console.log("skill");
+  //     console.log(value.attributes);
+  //   });
+  // });
 
 
   res.json(users);

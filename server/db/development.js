@@ -38,6 +38,7 @@ Bookshelf.PG.knex.schema.hasTable('skills_users').then(function(exists){
       table.increments().primary();
       table.integer('user_id');
       table.integer('skill_id');
+      table.string('level', 69);
     });
   }
 });
