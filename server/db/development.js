@@ -12,22 +12,30 @@ Bookshelf.PG = Bookshelf.initialize({
   }
 });
 
+Bookshelf.PG.Model.prototype.findOrCreate = function(options) {
+  var cloned = this.clone();
+  return this.fetch(_.extend(options, {require: true})).then(null, function(err){
+    if (err.message === 'EmptyResponse') return cloned.save();
+    throw err;
+  });
+};
+
 // create users table
 Bookshelf.PG.knex.schema.hasTable('users').then(function(exists){
   if (!exists){
     return Bookshelf.PG.knex.schema.createTable('users', function(table) {
-      table.increments('id').primary();
+      table.increments().primary();
       table.string('name', 69);
       table.string('email', 69);
     });
   }
 });
 
-// create users_skills table
-Bookshelf.PG.knex.schema.hasTable('users_skills').then(function(exists){
+// create skills_users table
+Bookshelf.PG.knex.schema.hasTable('skills_users').then(function(exists){
   if (!exists){
-    return Bookshelf.PG.knex.schema.createTable('users_skills', function(table) {
-      table.increments('id').primary();
+    return Bookshelf.PG.knex.schema.createTable('skills_users', function(table) {
+      table.increments().primary();
       table.integer('user_id');
       table.integer('skill_id');
     });
@@ -38,7 +46,7 @@ Bookshelf.PG.knex.schema.hasTable('users_skills').then(function(exists){
 Bookshelf.PG.knex.schema.hasTable('skills').then(function(exists){
   if (!exists){
     return Bookshelf.PG.knex.schema.createTable('skills', function(table) {
-      table.increments('id').primary();
+      table.increments().primary();
       table.string('name', 69);
     });
   }
@@ -48,20 +56,20 @@ Bookshelf.PG.knex.schema.hasTable('skills').then(function(exists){
 // make it
 
 
-var User = Bookshelf.PG.Model.extend({
-  tableName: 'users',
+// var User = Bookshelf.PG.Model.extend({
+//   tableName: 'users',
 
-  initialize: function() {
-  },
+//   initialize: function() {
+//   },
 
-});
+// });
 
-User.forge({})
-  .query()
-  .where({
-    "email": "joey@hackreactor.com"
-  })
-  .select()
-  .then(function(model) {
-    console.log(model);
-  });
+// User.forge({})
+//   .query()
+//   .where({
+//     "email": "joey@hackreactor.com"
+//   })
+//   .select()
+//   .then(function(model) {
+//     console.log(model);
+//   });

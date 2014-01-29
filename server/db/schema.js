@@ -7,7 +7,8 @@ var db = {
   users_skills: {
     id: {type: 'increments', nullable: false, primary: true},
     user_id: {type: 'integer', nullable: false},
-    skill_id: {type: 'integer', nullable: false}
+    skill_id: {type: 'integer', nullable: false},
+    skillLevel: {type: 'string', nullable: false}
   },
   skills: {
     id: {type: 'increments', nullable: false, primary: true},
