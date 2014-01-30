@@ -48,7 +48,7 @@ Bookshelf.PG.knex.schema.hasTable('skills').then(function(exists){
   if (!exists){
     return Bookshelf.PG.knex.schema.createTable('skills', function(table) {
       table.increments().primary();
-      table.string('name', 69);
+      table.string('skill_name', 69);
     });
   }
 });
