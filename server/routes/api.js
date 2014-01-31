@@ -50,10 +50,50 @@ var getUsers = bookshelf.knex('users')
     .join('skills', 'skills_users.skill_id', '=', 'skills.id')
     .select('name', 'email', 'level', 'skill_name')
     .then(function(users){
-      usersObj = {
-        userObj: _.unique(_.pluck(users, 'email')),
-        table: users
-      };
+      // console.log(users);
+      // console.log(_.pluck(users, 'email'));
+      // // usersObj = {
+      // //   userObj: _.unique(_.pluck(users, 'email')),
+      // //   table: users
+      // // };
+      // console.log(_.groupBy(users, function(user){
+      //   return user.email;
+      // }));
+      console.log(users)
+      var obj = [];
+      var users = {};
+      _.each(users, function(value, key, collection){
+        if (users[value.email]) {
+
+        } else {
+          users[value.email] = true;
+
+        }
+      })
+
+      // var jsond = [];
+      // _.chain(users)
+      //               .groupBy(function(user){
+      //                 return user.email;
+      //               })
+      //               .each(function(entries, user, collection){
+      //                 _.each(entries, function(entry){
+      //                   collection[user].skills = collection[user].skills || {};
+      //                   collection[user].skills[entry.skill_name] = entry.level;
+      //                   console.log(collection)
+      //                   console.log(user)
+      //                   console.log(collection[user])
+      //                   jsond.push({
+      //                     name: collection[user][0].name,
+      //                     email: collection[user][0].email,
+      //                     skills: _.last(collection[user])
+      //                   })
+      //                 })
+      //                 console.log(jsond)
+                    
+      //               });
+                    // .value();
+      // console.log(usersObj); 
     });
 
 // var users = new Users();
@@ -154,6 +194,19 @@ exports.users = function(req, res){
   //     console.log(model);
   //   });
 
+var getUsers = bookshelf.knex('users')
+    .join('skills_users', 'users.id', '=', 'skills_users.user_id')
+    .join('skills', 'skills_users.skill_id', '=', 'skills.id')
+    .select('name', 'email', 'level', 'skill_name')
+    .then(function(users){
+      console.log("GETUSERS\n", users);
+      usersObj = {
+        userObj: _.unique(_.pluck(users, 'email')),
+        table: users
+      };
+    });
+
+
   var newUser = new User({id: 1});
 
   var userObj = {
@@ -185,6 +238,7 @@ exports.users = function(req, res){
     });
   });
 
+
   var users = new Users();
   // Collen
   users.fetch().then(function(models){
@@ -195,20 +249,28 @@ exports.users = function(req, res){
         withRelated: userRelations
       }).then(function(user){
         // console.log('user2x: \n', user);
-        user.related('skillLevels').query("where", "user_id", "=", user.get('id')).fetch().then(function(levels){ 
+        user.related('skillLevels').query("where", "user_id", "=", user.get('id')).fetch().then(function(levels){
           levels.forEach(function(level) {
             var skill = new Skill();
             skill.query("where", "id", "=", level.get('skill_id')).fetch().then(function(sk){
               user.attributes.skills = user.attributes.skills || {};
               user.attributes.skills[sk.get('skill_name')] = level.get('level');
+              console.log("user attributes\n", user.attributes);
+              console.log("user\n", user);
               // console.log(user.attributes, user.get('name'), sk.get('skill_name'), level.get('level'));
             });
+            console.log("END?");
           });
+          // console.log(_.pluck(user, 'attributes'));
+          console.log('close levels\n,', user);
         });
+        console.log('close user\n,', user);
       });
+      console.log('close models\n,', user);
     });
+    console.log('close users\n,', user);
   });
-
+  console.log("DERP!");
   res.json(users);
 };
 
