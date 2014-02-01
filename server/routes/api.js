@@ -31,7 +31,7 @@ var Skill = bookshelf.Model.extend({
 
   users: function(){
     return this.belongsToMany(User, 'skills_users');
-  },
+  }
 
 });
 
@@ -43,40 +43,6 @@ var Users = bookshelf.Collection.extend({
   model: User
 });
 
-// var usersObj = {};
-
-
-      // var jsond = [];
-      // _.chain(rows)
-      //               .groupBy(function(user){
-      //                 return user.email;
-      //               })
-      //               .each(function(entries, user, collection){
-      //                 _.each(entries, function(entry){
-      //                   collection[user].skills = collection[user].skills || {};
-      //                   collection[user].skills[entry.skill_name] = entry.level;
-      //                   console.log(collection)
-      //                   console.log(user)
-      //                   console.log(collection[user])
-      //                   jsond.push({
-      //                     name: collection[user][0].name,
-      //                     email: collection[user][0].email,
-      //                     skills: _.last(collection[user])
-      //                   })
-      //                 })
-      //                 console.log(jsond)
-                    
-      //               });
-                    // .value();
-      // console.log(rowsObj); 
-
-
-// var users = new Users();
-// users
-//   .fetch()
-//   .then(function(users){
-//     console.log(users.models[0].attributes);
-//   });
 
 // // Collen
 // var users = new Users();
@@ -145,61 +111,63 @@ var Users = bookshelf.Collection.extend({
 
 
 exports.users = function(req, res){
-  // User.forge({})
-  //   .query()
-  //   .select()
-  //   .then(function(model) {
-  //     console.log("all users");
-  //     console.log(model);
-  //   });
 
-  // Skill.forge({})
-  //   .query()
-  //   .select()
-  //   .then(function(model) {
-  //     console.log("all skills");
-  //     console.log(model);
-  //   });
+    // User.forge({id: 1}).fetch({
+    //   withRelated: ['skills', 'skillLevels']
+    // }).then(function(user){
+    //   console.log(user.related('skills').toJSON());
+    //   console.log(user.related('skillLevels').toJSON());
+    //   console.log(user);
+    // });
 
-  // UserSkill.forge({})
-  //   .query()
-  //   .select()
-  //   .then(function(model) {
-  //     console.log("all userskills");
-  //     console.log(model);
-  //   });
+    // var usersInTable = new Users();
 
+    // usersInTable.fetch().then(function(users){
+    //   users.forEach(function(user){
+    //     user.fetch({
+    //       withRelated: userRelations
+    //     }).then(function(fetched){
+    //       console.log('fetched\n', fetched);
+    //     });
+    //   })
+    //   console.log('jsonusers\n', users.toJSON());
+    //   console.log('users', users);
+    // });
+
+    // usersInTable.skills().fetch().then(function(users){
+    //   console.log('skills\n', users.toJSON());
+    //   console.log('skls', users);
+    // });
+
+    // Users.forge().fetch({withRelated: userRelations}).then(function(z){
+    //   _.each(JSON.parse(JSON.stringify(z)), function(value, key, collection){
+    //     console.log(value.skills)
+    //   });
+    // })
+
+
+    // usersInTable.fetch({
+    //   withRelated: userRelations
+    // }).then(function(model){
+    //   console.log('model\n', model)
+    // });
+
+    // usersInTable.query(function(qb){
+    //   qb.where('')
+    // })
 
     var getUsers = bookshelf.knex('users')
         .join('skills_users', 'users.id', '=', 'skills_users.user_id')
         .join('skills', 'skills_users.skill_id', '=', 'skills.id')
         .select('name', 'email', 'level', 'skill_name')
         .then(function(rows){
-          // console.log(rows);
-          // console.log(_.pluck(rows, 'email'));
-          // // rowsObj = {
-          // //   userObj: _.unique(_.pluck(rows, 'email')),
-          // //   table: rows
-          // // };
-          // console.log(_.groupBy(rows, function(user){
-          //   return user.email;
-          // }));
-
-          // var jsond = [];
-          // var users = _.each(_.unique(_.pluck(rows, 'email')), function(value, key, collection){
-          //   jsond.push({email: value});
-          // });
-
-          // _.each(rows, function(value, key, collection){
-            
-          // })
-
           var userObj = {};
+          var counter = 1;
           var users = _.each(_.unique(_.pluck(rows, 'email')), function(value, key, collection){
             userObj[value] = ({email: value});
+            userObj[value].id = counter;
+            counter++;
           });
-
-          console.log(userObj)
           _.each(rows, function(value, key, collection){
             userObj[value.email].name = value.name;
             if (!userObj[value.email].skills){
@@ -207,101 +175,30 @@ exports.users = function(req, res){
             }
             userObj[value.email].skills[value.skill_name] = value.level;
           });
-          console.log(userObj)
-
           var userArr = [];
           _.each(userObj, function(value, key, collection){
             userArr.push(value);
           });
-          console.log(userArr);
-
           res.json(userArr);
         });
 };
 
-//   var newUser = new User({id: 1});
-
-//   var userObj = {
-//     skills: {}
-//   };
-
-//   newUser.fetch().then(function(user){
-//     _.extend(userObj, user.attributes);
-//     // console.log(userObj);
-//   });
-
-//   // newUser.skills().fetch().then(function(user){
-//   //   _.each(user.models, function(value, key, collection){
-//   //     console.log("value.attributes")
-//   //     console.log(value.attributes);
-//   //     _.extend(userObj.skills, value.attributes);
-//   //     // console.log(value.attributes);
-//   //     console.log(userObj);
-//   //   });
-//   // });
-//   newUser.skillLevels().fetch().then(function(user){
-//     // console.log(user)
-//     _.each(user.models, function(value, key, collection){
-//       // console.log("value")
-//       // console.log(value);
-//       _.extend(userObj.skills, value.attributes);
-//       // console.log(value.attributes);
-//       // console.log(userObj);
-//     });
-//   });
-
-
-//   var users = new Users();
-//   // Collen
-//   users.fetch().then(function(models){
-//     // console.log('models: \n', models.models);
-//     models.forEach(function(user){
-//       // console.log('user1: \n', user);
-//       user.fetch({
-//         withRelated: userRelations
-//       }).then(function(user){
-//         // console.log('user2x: \n', user);
-//         user.related('skillLevels').query("where", "user_id", "=", user.get('id')).fetch().then(function(levels){
-//           levels.forEach(function(level) {
-//             var skill = new Skill();
-//             skill.query("where", "id", "=", level.get('skill_id')).fetch().then(function(sk){
-//               user.attributes.skills = user.attributes.skills || {};
-//               user.attributes.skills[sk.get('skill_name')] = level.get('level');
-//               console.log("user attributes\n", user.attributes);
-//               console.log("user\n", user);
-//               // console.log(user.attributes, user.get('name'), sk.get('skill_name'), level.get('level'));
-//             });
-//             console.log("END?");
-//           });
-//           // console.log(_.pluck(user, 'attributes'));
-//           console.log('close levels\n,', user);
-//         });
-//         console.log('close user\n,', user);
-//       });
-//       console.log('close models\n,', user);
-//     });
-//     console.log('close users\n,', user);
-//   });
-//   console.log("DERP!");
-//   res.json(users);
-// };
-
 
 exports.addUser = function(req, res){
-  var user = new User({
-    name: req.body.name,
-    email: req.body.email
-  }).findOrCreate().then(function(model){
-    // console.log(model.toJSON());
-  });
+  // var user = new User({
+  //   name: req.body.name,
+  //   email: req.body.email
+  // }).findOrCreate().then(function(model){
+  //   // console.log(model.toJSON());
+  // });
 
-  _.each(req.body.skills, function(value, key, collection){
-    var skill = new Skill ({
-      name: key
-    }).findOrCreate().then(function(model){
-      // console.log(model.toJSON());
-    });
-  });
+  // _.each(req.body.skills, function(value, key, collection){
+  //   var skill = new Skill ({
+  //     name: key
+  //   }).findOrCreate().then(function(model){
+  //     // console.log(model.toJSON());
+  //   });
+  // });
 
   // users.push({
   //   id: users.length + 1,
