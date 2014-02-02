@@ -10,9 +10,9 @@ var http = require('http');
 var path = require('path');
 var _ = require('underscore');
 var Bookshelf  = require('bookshelf');
-var bookshelf = require('./server/db/development.js');
+// var bookshelf = require('./server/db/development.js');
+var bookshelf = require('./server/db/production.js');
 var api = require('./server/routes/api');
-// var bookshelf = require('./server/db/production.js');
 
 // initialize express
 
