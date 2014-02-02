@@ -10,14 +10,20 @@ var bookshelf = require('bookshelf').PG;
 var userRelations = ["skills", "skillLevels"];
 
 var User = bookshelf.Model.extend({
+
+  // A user:
+  // has one: name
+  // has one: email
+  // has many: skills
+
   tableName: 'users',
 
   skills: function(){
-    return this.hasMany(Skill, 'user_id').through(UserSkill, 'id');
+    return this.hasMany(Skill, 'user_id').through(SkillUser, 'id');
   },
 
   skillLevels: function(){
-    return this.hasMany(UserSkill, 'user_id');
+    return this.hasMany(SkillUser, 'user_id');
   },
 
   email: function(){
@@ -27,6 +33,11 @@ var User = bookshelf.Model.extend({
 });
   
 var Skill = bookshelf.Model.extend({
+
+  // A skill:
+  // has one: name
+  // belongs to many: users
+
   tableName: 'skills',
 
   users: function(){
@@ -35,7 +46,7 @@ var Skill = bookshelf.Model.extend({
 
 });
 
-var UserSkill = bookshelf.Model.extend({
+var SkillUser = bookshelf.Model.extend({
   tableName: 'skills_users',
 });
 
@@ -43,30 +54,7 @@ var Users = bookshelf.Collection.extend({
   model: User
 });
 
-
-// // Collen
-// var users = new Users();
-
-// users.fetch().then(function(models){
-//   // console.log('models: \n', models);
-//   models.forEach(function(user){
-//     // console.log('user1: \n', user);
-//     user.fetch({
-//       withRelated: userRelations
-//     }).then(function(user){
-//       // console.log('user2x: \n', user);
-//       user.related('skillLevels').query("where", "user_id", "=", user.get('id')).fetch().then(function(levels){
-
-//         levels.forEach(function(level) {
-//           var skill = new Skill();
-//           skill.query("where", "id", "=", level.get('skill_id')).fetch().then(function(sk){
-//             console.log(user.get('name'), sk.get('skill_name'), level.get('level'));
-//           });
-//         });
-//       });
-//     });
-//   });
-// });
+// Format expected by client
 
 // var users = [
 //   {
@@ -85,59 +73,13 @@ var Users = bookshelf.Collection.extend({
 //     skills: {
 //       "Everything": "Expert"
 //     }
-//   },
-//   {
-//     id: 3,
-//     name: "Doug",
-//     email: "doug@hackreactor.com",
-//     skills: {
-//       "Beard": "Expert",
-//       "Trolling": "Expert",
-//       "Talking": "Expert"
-//     }
-//   },
-//   {
-//     id: 4,
-//     name: "Fred",
-//     email: "fred@hackreactor.com",
-//     skills: {
-//       "Node": "Expert",
-//       "Angular": "Expert",
-//       "Backbone": "Expert",
-//       "Git": "Expert"
-//     }
 //   }
 // ];
 
 
 exports.users = function(req, res){
 
-    // User.forge({id: 1}).fetch({
-    //   withRelated: ['skills', 'skillLevels']
-    // }).then(function(user){
-    //   console.log(user.related('skills').toJSON());
-    //   console.log(user.related('skillLevels').toJSON());
-    //   console.log(user);
-    // });
-
-    // var usersInTable = new Users();
-
-    // usersInTable.fetch().then(function(users){
-    //   users.forEach(function(user){
-    //     user.fetch({
-    //       withRelated: userRelations
-    //     }).then(function(fetched){
-    //       console.log('fetched\n', fetched);
-    //     });
-    //   })
-    //   console.log('jsonusers\n', users.toJSON());
-    //   console.log('users', users);
-    // });
-
-    // usersInTable.skills().fetch().then(function(users){
-    //   console.log('skills\n', users.toJSON());
-    //   console.log('skls', users);
-    // });
+    // // Other acceptable ways
 
     // Users.forge().fetch({withRelated: userRelations}).then(function(z){
     //   _.each(JSON.parse(JSON.stringify(z)), function(value, key, collection){
@@ -145,16 +87,16 @@ exports.users = function(req, res){
     //   });
     // })
 
+    // // OR
 
-    // usersInTable.fetch({
-    //   withRelated: userRelations
-    // }).then(function(model){
-    //   console.log('model\n', model)
+    // Users.forge().fetch({withRelated: userRelations}).then(function(collection){
+    //   collection.forEach(function(user){
+    //     user.load(userRelations)
+    //         .then(function(model){
+    //           JSON.stringify(model);
+    //         });
+    //   });
     // });
-
-    // usersInTable.query(function(qb){
-    //   qb.where('')
-    // })
 
     var getUsers = bookshelf.knex('users')
         .join('skills_users', 'users.id', '=', 'skills_users.user_id')
@@ -185,26 +127,23 @@ exports.users = function(req, res){
 
 
 exports.addUser = function(req, res){
-  // var user = new User({
-  //   name: req.body.name,
-  //   email: req.body.email
-  // }).findOrCreate().then(function(model){
-  //   // console.log(model.toJSON());
-  // });
+  var user = new User({
+    name: req.body.name,
+    email: req.body.email
+  }).findOrCreate({withRelated: userRelations}).then(function(userModel){
 
-  // _.each(req.body.skills, function(value, key, collection){
-  //   var skill = new Skill ({
-  //     name: key
-  //   }).findOrCreate().then(function(model){
-  //     // console.log(model.toJSON());
-  //   });
-  // });
-
-  // users.push({
-  //   id: users.length + 1,
-  //   name: req.body.name,
-  //   email: req.body.email,
-  //   skills: JSON.parse(req.body.skills)
-  // });
-  res.send();
+    _.each(JSON.parse(req.body.skills), function(value, key, collection){
+      var skill = new Skill ({
+        skill_name: key
+      }).findOrCreate().then(function(skillModel){
+        SkillUser.forge({
+          user_id: userModel.toJSON().id,
+          skill_id: skillModel.toJSON().id,
+          level: value
+        }).findOrCreate().then(function(){
+          res.send();
+        });
+      });
+    });
+  });
 };

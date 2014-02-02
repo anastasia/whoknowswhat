@@ -1,4 +1,5 @@
 var Bookshelf = require('bookshelf');
+var _ = require('underscore');
 
 Bookshelf.PG = Bookshelf.initialize({
   client: 'pg',
@@ -13,6 +14,7 @@ Bookshelf.PG = Bookshelf.initialize({
 });
 
 Bookshelf.PG.Model.prototype.findOrCreate = function(options) {
+  options = options || {};
   var cloned = this.clone();
   return this.fetch(_.extend(options, {require: true})).then(null, function(err){
     if (err.message === 'EmptyResponse') return cloned.save();
