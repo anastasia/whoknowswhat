@@ -3,7 +3,8 @@ var AppRouter = Backbone.Router.extend({
   routes: {
     "": "showSkills",
     "skills": "showSkills",
-    "submit": "submit"
+    "submit": "submit",
+    "edit": "edit"
   },
 
   initialize: function(){
@@ -43,6 +44,20 @@ var AppRouter = Backbone.Router.extend({
 
     // render Create User Form
     this.createUserView = new CreateUserView({
+      model: new User(),
+      collection: this.users
+    });
+
+    $('body').append(this.createUserView.render().el);
+  },
+
+  edit: function(){
+    // destroy old views
+    this.headerText && this.headerText.destroy();
+    this.skillsListView && this.skillsListView.destroy();
+
+    // render Edit User Form
+    this.editUserView = new EditUserView({
       model: new User(),
       collection: this.users
     });

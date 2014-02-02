@@ -31,6 +31,12 @@ var userTemplates = {
         "<ul class='right'>" +
           "<li class='divider'></li>" +
           "<li>" +
+            "<a class='edit' href='#/edit'>Edit</a>" +
+          "</li>" +
+        "</ul>" +
+        "<ul class='right'>" +
+          "<li class='divider'></li>" +
+          "<li>" +
             "<a class='submit' href='#/submit'>Submit</a>" +
           "</li>" +
         "</ul>" +

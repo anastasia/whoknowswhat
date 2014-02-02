@@ -10,7 +10,8 @@ var TopBarView = Backbone.View.extend({
   events: {
     // "click .home":
     "click a.home": "triggerHome",
-    "click a.submit": "triggerSubmit"
+    "click a.submit": "triggerSubmit",
+    "click a.edit": "triggerEdit"
   },
 
   template: _.template(userTemplates.topBarView), // in /client/templates/userTemplates.js
@@ -18,6 +19,11 @@ var TopBarView = Backbone.View.extend({
   triggerSubmit: function(e){
     e.preventDefault();
     appRouter.navigate("submit", {trigger: true});
+  },
+
+  triggerEdit: function(e){
+    e.preventDefault();
+    appRouter.navigate("edit", {trigger: true});
   },
 
   triggerHome: function(e){
