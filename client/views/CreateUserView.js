@@ -19,12 +19,17 @@ var CreateUserView = Backbone.View.extend({
   },
 
   getFormAttributes: function(e){
-    var newUserName = $(e.currentTarget).find('input[name="name"]').val();      // get form values
+
+    var toTitleCase = function(str) {
+      return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+    };
+
+    var newUserName = toTitleCase($(e.currentTarget).find('input[name="name"]').val());      // get form values
     var newUserEmail = $(e.currentTarget).find('input[name="email"]').val();    // get form values
     var newUserSkillList = [],
         newUserSkillLevels = [];
     $('input.skill').each(function(index, element){
-      newUserSkillList.push(element.value);
+      newUserSkillList.push(toTitleCase(element.value));
     });
     $('select.skillList').each(function(index, element){
       newUserSkillLevels.push(element.value);
@@ -45,18 +50,7 @@ var CreateUserView = Backbone.View.extend({
     $('.addSkill').before(addSkillView.render().el); // append entry views to tbody
   },
 
-  template: _.template(
-    "<p>" +
-      "Enter your skills here:" +
-      "<form>" +
-        "Name: <input name='name' placeholder='<%= attributes.name %>'></input><br>" +
-        "Email: <input name='email' placeholder='<%= attributes.email %>'></input><br>" +
-        userTemplates.addSkillView +
-        "<button class='addSkill'>Add Skill</button><br>" +
-        "<button type='submit'>Submit</button>" +
-      "</form>" +
-    "</p>"
-  ),
+  template: _.template(userTemplates.submitSkills),
 
   render: function(eventName){
     this.$el.html(this.template(this.model));

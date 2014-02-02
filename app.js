@@ -6,10 +6,13 @@
 
 var express = require('express');
 var routes = require('./server/routes/index');
-var api = require('./server/routes/api');
 var http = require('http');
 var path = require('path');
 var _ = require('underscore');
+var Bookshelf  = require('bookshelf');
+// var bookshelf = require('./server/db/development.js');
+var bookshelf = require('./server/db/production.js');
+var api = require('./server/routes/api');
 
 // initialize express
 
@@ -31,6 +34,7 @@ app.use(express.session());
 app.use(express.bodyParser());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 //
 // development only - error checking

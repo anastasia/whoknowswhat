@@ -28,9 +28,9 @@ lib-cov
 pids
 logs
 results
+node_modules
 
 npm-debug.log
-node_modules
 
 ###PhPStorm###
 

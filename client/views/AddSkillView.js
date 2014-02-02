@@ -15,4 +15,5 @@ var AddSkillView = Backbone.View.extend({
   destroy: function(){
     this.$el.remove();
   }
+  
 });
