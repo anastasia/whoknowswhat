@@ -131,7 +131,6 @@ exports.addUser = function(req, res){
     name: req.body.name,
     email: req.body.email
   }).findOrCreate({withRelated: userRelations}).then(function(userModel){
-
     _.each(JSON.parse(req.body.skills), function(value, key, collection){
       var skill = new Skill ({
         skill_name: key

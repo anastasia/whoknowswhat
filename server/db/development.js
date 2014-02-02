@@ -54,25 +54,3 @@ Bookshelf.PG.knex.schema.hasTable('skills').then(function(exists){
     });
   }
 });
-
-// if the table doesn't exist
-// make it
-
-
-// var User = Bookshelf.PG.Model.extend({
-//   tableName: 'users',
-
-//   initialize: function() {
-//   },
-
-// });
-
-// User.forge({})
-//   .query()
-//   .where({
-//     "email": "joey@hackreactor.com"
-//   })
-//   .select()
-//   .then(function(model) {
-//     console.log(model);
-//   });
