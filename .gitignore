@@ -28,6 +28,7 @@ lib-cov
 pids
 logs
 results
+node_modules
 
 npm-debug.log
 
@@ -41,6 +42,7 @@ npm-debug.log
 *.sublime-workspace
 
 # bower
+client/bower_components
 
 # audio
 *.aif
