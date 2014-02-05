@@ -62,7 +62,7 @@ var AppRouter = Backbone.Router.extend({
       collection: this.users
     });
 
-    $('body').append(this.createUserView.render().el);
+    $('body').append(this.editUserView.render().el);
   }
 
 });

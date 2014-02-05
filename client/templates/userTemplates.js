@@ -67,5 +67,13 @@ var userTemplates = {
         "<button class='addSkill'>Add Skill</button><br>" +
         "<button type='submit'>Submit</button>" +
       "</form>" +
+    "</p>",
+  editSkillsByEmail:
+    "<p>" +
+      "Enter your email here:" +
+      "<form>" +
+        "Email: <input type='email' name='email' placeholder='<%= attributes.email %>' required></input><br>" +
+        "<button type='submit'>Edit</button>" +
+      "</form>" +
     "</p>"
 };

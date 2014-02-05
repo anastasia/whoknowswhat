@@ -103,6 +103,7 @@ exports.users = function(req, res){
     .join('skills', 'skills_users.skill_id', '=', 'skills.id')
     .select('name', 'email', 'level', 'skill_name')
     .then(function(rows){
+      console.log(rows);
       var userObj = {};
       var counter = 1;
       var users = _.each(_.unique(_.pluck(rows, 'email')), function(value, key, collection){
